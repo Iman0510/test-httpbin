@@ -1,19 +1,28 @@
---- 
+version: 0.2
 phases: 
-  build: 
-    commands: 
-      - "echo Build started on `date`"
-      - "echo Building the Docker image..."
-      - "docker build -t dvohra/node-server ."
-      - "docker tag dvohra/node-server dvohra/node-server:latest"
-  post_build: 
-    commands: 
-      - "echo Build completed on `date`"
-      - "echo Pushing the Docker image..."
-      - "docker push dvohra/node-server:latest"
   pre_build: 
+    commands:
+      - echo Starting the pre build process
+      - echo Logging in to Docker Hub...
+      - docker login --username=\"dvohra\" --password=\"password\"
+    finally:
+      - echo This text under the "/finally/" section always runs even if the pre build commands fail
+  build:
     commands: 
-      - "echo Logging in to Docker Hub..."
-      - "docker login --username=\"dvohra\" --password=\"password\""
-version: 0.1
+      - echo Starting the build process
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - docker build -t dvohra/node-server .
+      - docker tag dvohra/node-server dvohra/node-server:latest
+    finally:
+      - echo This text under the "/finally/" section always runs even if the build commands fail  
+  post_build: 
+    commands:
+      - echo Starting the post build process
+      - echo Build completed on `date`
+      - echo Pushing the Docker image...
+      - docker push dvohra/node-server:latest
+    finally:
+      - echo This text under the "/finally/" section always runs even if the post build commands fail  
+
 
