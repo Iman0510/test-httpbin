@@ -1,0 +1,33 @@
+---
+version: 0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: arn:aws:ecs:eu-west-3:571825886228:task-definition/td-tst-remit:2
+        LoadBalancerInfo:
+          ContainerName: httpbin
+          ContainerPort: 80
+        PlatformVersion: LATEST
+        NetworkConfiguration:
+          AwsvpcConfiguration:
+            Subnets:
+              - subnet-09a3c0d1291faa569
+              - subnet-0b6215a285eaba936
+              - subnet-06f8b3e430c022e12
+            SecurityGroups:
+              - sg-0e5dc8edeb66b0219
+            AssignPublicIp: DISABLED
+        CapacityProviderStrategy:
+          - Base: 1
+            CapacityProvider: FARGATE
+            Weight: 2
+          - Base: 0
+            CapacityProvider: FARGATE
+            Weight: 1
+Hooks:
+  - BeforeInstall: LambdaFunctionToValidateBeforeInstall
+  - AfterInstall: LambdaFunctionToValidateAfterInstall
+  - AfterAllowTestTraffic: LambdaFunctionToValidateAfterTestTrafficStarts
+  - BeforeAllowTraffic: LambdaFunctionToValidateBeforeAllowingProductionTraffic
+  - AfterAllowTraffic: LambdaFunctionToValidateAfterAllowingProductionTraffic
