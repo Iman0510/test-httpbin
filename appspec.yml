@@ -25,9 +25,3 @@ Resources:
           - Base: 0
             CapacityProvider: FARGATE
             Weight: 1
-Hooks:
-  - BeforeInstall: LambdaFunctionToValidateBeforeInstall
-  - AfterInstall: LambdaFunctionToValidateAfterInstall
-  - AfterAllowTestTraffic: LambdaFunctionToValidateAfterTestTrafficStarts
-  - BeforeAllowTraffic: LambdaFunctionToValidateBeforeAllowingProductionTraffic
-  - AfterAllowTraffic: LambdaFunctionToValidateAfterAllowingProductionTraffic
