@@ -19,9 +19,6 @@ Resources:
               - sg-0e5dc8edeb66b0219
             AssignPublicIp: DISABLED
         CapacityProviderStrategy:
-          - Base: 1
-            CapacityProvider: FARGATE
-            Weight: 2
           - Base: 0
             CapacityProvider: FARGATE
             Weight: 1
