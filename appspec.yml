@@ -4,7 +4,7 @@ Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: arn:aws:ecs:eu-west-3:571825886228:task-definition/td-tst-remit:2
+        TaskDefinition: arn:aws:ecs:eu-west-3:571825886228:task-definition/td-tst-remit
         LoadBalancerInfo:
           ContainerName: httpbin
           ContainerPort: 80
