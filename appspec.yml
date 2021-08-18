@@ -1,10 +1,10 @@
 ---
-version: 0
+version: 0.0
 Resources:
   - TargetService:
       Type: AWS::ECS::Service
       Properties:
-        TaskDefinition: arn:aws:ecs:eu-west-3:571825886228:task-definition/td-tst-remit
+        TaskDefinition: <TASK_DEFINITION>
         LoadBalancerInfo:
           ContainerName: httpbin
           ContainerPort: 80
@@ -16,9 +16,5 @@ Resources:
               - subnet-0b6215a285eaba936
               - subnet-06f8b3e430c022e12
             SecurityGroups:
-              - sg-0e5dc8edeb66b0219
+              - sg-0544a6b5925b9fb4b
             AssignPublicIp: DISABLED
-        CapacityProviderStrategy:
-          - Base: 0
-            CapacityProvider: FARGATE
-            Weight: 1

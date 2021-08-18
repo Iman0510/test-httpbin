@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "httpbin",
-            "image": "571825886228.dkr.ecr.eu-west-3.amazonaws.com/remit-test:5288c57",
+            "image": "<IMAGE1_NAME>",
             "portMappings": [
                 {
                     "hostPort": 80,
